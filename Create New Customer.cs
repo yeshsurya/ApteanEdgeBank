@@ -144,5 +144,25 @@ namespace ApteanEdgeBank
             }
 
         }
+
+        private void dateOfBirthBox_TabIndexChanged(object sender, EventArgs e)
+        {
+            monthCalendar1.Show();
+        }
+
+        private void dateOfBirthBox_CursorChanged(object sender, EventArgs e)
+        {
+            monthCalendar1.Show();
+        }
+
+        private void dateOfBirthBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            monthCalendar1.Show();
+        }
+
+        private void dateOfBirthBox_Enter(object sender, EventArgs e)
+        {
+            monthCalendar1.Show();
+        }
     }
 }

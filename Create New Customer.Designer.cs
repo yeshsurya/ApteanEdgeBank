@@ -112,7 +112,11 @@
             this.dateOfBirthBox.Size = new System.Drawing.Size(227, 20);
             this.dateOfBirthBox.TabIndex = 5;
             this.dateOfBirthBox.Click += new System.EventHandler(this.dateOfBirthBox_Click);
+            this.dateOfBirthBox.CursorChanged += new System.EventHandler(this.dateOfBirthBox_CursorChanged);
+            this.dateOfBirthBox.TabIndexChanged += new System.EventHandler(this.dateOfBirthBox_TabIndexChanged);
             this.dateOfBirthBox.TextChanged += new System.EventHandler(this.dateOfBirthBox_TextChanged);
+            this.dateOfBirthBox.Enter += new System.EventHandler(this.dateOfBirthBox_Enter);
+            this.dateOfBirthBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateOfBirthBox_KeyPress);
             // 
             // checkBox1
             // 
