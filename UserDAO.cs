@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace ApteanEdgeBank
 {
@@ -88,6 +89,8 @@ namespace ApteanEdgeBank
             }
             return true;
         }
+
+
         public DataTable GetData(string myQuery,string connectionString)   // data returned for the myQery will be returned as a DataTable
         {
             try
@@ -151,6 +154,41 @@ namespace ApteanEdgeBank
             }
 
 
+        }
+
+        public void UpdateData(string myQuery, string connectionString)
+        {
+            try
+            {
+                SqlConnection myConnection = new SqlConnection(connectionString);
+                
+                //Create the command and tell you will provide a SQL query
+                SqlCommand cmd = new SqlCommand(myQuery, myConnection);
+                //create adapter
+                int rows = cmd.ExecuteNonQuery();
+                SqlDataAdapter myAdapter = new SqlDataAdapter(cmd);
+                
+                //open the connection
+                myConnection.Open();
+
+                if (rows > 0)
+                {
+                    MessageBox.Show(rows + " Rows affected");
+                }
+                else
+                {
+                    MessageBox.Show("Update unsuccessful!");
+                }
+                //fill data in command
+               myAdapter.Fill(dt);
+
+                //close the connection
+                myConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
 
 
