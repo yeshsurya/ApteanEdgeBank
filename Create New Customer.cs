@@ -78,6 +78,7 @@ namespace ApteanEdgeBank
         private void Create_New_Customer_Load(object sender, EventArgs e)
         {
             monthCalendar1.Hide();
+            button1.Hide();
         }
 
         private void dateOfBirthBox_TextChanged(object sender, EventArgs e)
