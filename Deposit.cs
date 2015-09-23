@@ -88,6 +88,35 @@ Customer.CustomerID = CustomerAccount.CustomerID
 where Account.DateOfClosing is null", UserDAO.connectionString);
         }
 
+        public string GetAccountType(int accId)
+        {
+            UserDAO dao = new UserDAO();
+            DataTable dt = new DataTable();
+            string myQuery = "select * from Account where AccountID=" + accId;
+            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            dt = dao.GetData(myQuery, connectionstring);
+            string Type = "";
+            if (Convert.ToString(dt.Rows[0]["AccountType"]) == "CA")
+            {
+                Type="CA";
+                return Type;
+            }
+            else if (Convert.ToString(dt.Rows[0]["AccountType"]) == "TFS")
+            {
+               Type="TFA";
+                return Type;
+            }
+            else if (Convert.ToString(dt.Rows[0]["AccountType"]) == "LA")
+            {
+                Type = "LA";
+                return Type;
+            }
+            else
+            {
+                return Type;
+            }
+        }
+
         private void customerIDBox_TextChanged(object sender, EventArgs e)
         {
             CustomerID = customerIDBox.Text;
@@ -102,8 +131,24 @@ where Account.DateOfClosing is null", UserDAO.connectionString);
             }
             else
             {
-                dataAccess.InsertData(@"use ApteanEdgeBank update Account
-set AccountBalance=AccountBalance+"+Convert.ToString(textBox1.Text)+@"where AccountID =" + selectdAccountID, UserDAO.connectionString);
+                /*dataAccess.InsertData(@"use ApteanEdgeBank update Account
+set AccountBalance=AccountBalance+"+Convert.ToString(textBox1.Text)+@"where AccountID =" + selectdAccountID, UserDAO.connectionString);*/
+                if (GetAccountType(Convert.ToInt32(selectdAccountID)) == "CA")
+                {
+                    Account A = new ChequingAccount();
+                    A.Deposit(Convert.ToDouble(textBox1.Text), Convert.ToInt32(selectdAccountID));
+                    MessageBox.Show("Amount added successfully!");
+                }
+                else if (GetAccountType(Convert.ToInt32(selectdAccountID)) == "TFS")
+                {
+                    Account A = new TaxFreeSavingsAccount();
+                    A.Deposit(Convert.ToDouble(textBox1.Text), Convert.ToInt32(selectdAccountID));
+                    MessageBox.Show("Amount added successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Account could not be added");
+                }
             }
 
             textBox1.Clear();
