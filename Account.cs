@@ -16,8 +16,8 @@ namespace ApteanEdgeBank
         public DateTime dateClosed;
         public double Balance;
 
-        public abstract void Create(string accType,DateTime open,double balance);
-        public abstract void Deposit(double amount);
+        public abstract int Create(string accType,DateTime open,double balance);
+        public abstract void Deposit(double amount,int accId);
         public void Withdraw(double amount,int accID)
         {
             UserDAO dao=new UserDAO();
