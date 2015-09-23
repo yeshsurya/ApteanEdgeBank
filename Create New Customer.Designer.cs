@@ -37,8 +37,6 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dateOfBirthBox = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.middleNameBox = new System.Windows.Forms.TextBox();
             this.contactNumberBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -53,7 +51,7 @@
             // 
             // lastNameBox
             // 
-            this.lastNameBox.Location = new System.Drawing.Point(202, 171);
+            this.lastNameBox.Location = new System.Drawing.Point(202, 134);
             this.lastNameBox.Name = "lastNameBox";
             this.lastNameBox.Size = new System.Drawing.Size(227, 20);
             this.lastNameBox.TabIndex = 2;
@@ -72,7 +70,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(99, 171);
+            this.label2.Location = new System.Drawing.Point(83, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 4;
@@ -124,27 +122,9 @@
             this.checkBox1.Text = "Minor";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(84, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Middle Name";
-            // 
-            // middleNameBox
-            // 
-            this.middleNameBox.Location = new System.Drawing.Point(202, 105);
-            this.middleNameBox.Name = "middleNameBox";
-            this.middleNameBox.Size = new System.Drawing.Size(227, 20);
-            this.middleNameBox.TabIndex = 1;
-            this.middleNameBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.middleNameBox_KeyPress);
-            // 
             // contactNumberBox
             // 
-            this.contactNumberBox.Location = new System.Drawing.Point(202, 234);
+            this.contactNumberBox.Location = new System.Drawing.Point(202, 214);
             this.contactNumberBox.Name = "contactNumberBox";
             this.contactNumberBox.Size = new System.Drawing.Size(227, 20);
             this.contactNumberBox.TabIndex = 3;
@@ -155,7 +135,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(61, 234);
+            this.label5.Location = new System.Drawing.Point(60, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(125, 20);
             this.label5.TabIndex = 14;
@@ -163,7 +143,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(463, 234);
+            this.button1.Location = new System.Drawing.Point(481, 214);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -179,8 +159,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.contactNumberBox);
-            this.Controls.Add(this.middleNameBox);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dateOfBirthBox);
             this.Controls.Add(this.monthCalendar1);
@@ -209,8 +187,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.TextBox dateOfBirthBox;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox middleNameBox;
         private System.Windows.Forms.TextBox contactNumberBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;

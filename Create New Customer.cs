@@ -41,14 +41,14 @@ namespace ApteanEdgeBank
 
                         string FirstName = firstNameBox.Text;
                         string LastName = lastNameBox.Text;
-                        string MiddleName = middleNameBox.Text;
+                        //string MiddleName = middleNameBox.Text;
                         string DateOfBirth = dateOfBirthBox.Text;
                         string ContactNumber = contactNumberBox.Text;
                         if (!nw.DoCustomerExists(FirstName, LastName, DateOfBirth))
                         {
                             if (validFlag)
                             {
-                                nw.AddNewCutomer(FirstName, MiddleName, LastName, DateTime.Parse(DateOfBirth));
+                                nw.AddNewCutomer(FirstName, LastName, DateTime.Parse(DateOfBirth));
                                 nw.AddContactNumber(ContactNumber);
                             }
                             else

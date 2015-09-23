@@ -82,17 +82,19 @@ namespace ApteanEdgeBank
                 if (AccountType == "'CA'")
                 {
                     Account A = new ChequingAccount();
-                    AccountID=A.Create(AccountType, Convert.ToDateTime(dateOfOpening), Convert.ToDouble(textBox2.Text));
+                    AccountID=A.Create(AccountType,DateTime.Now, Convert.ToDouble(textBox2.Text));
                     UserDAO udao = new UserDAO();
                     udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
+                    MessageBox.Show("Account added successfully!");
                 }
 
                 else if (AccountType == "'TFS'")
                 {
                     Account A = new TaxFreeSavingsAccount();
-                    AccountID = A.Create(AccountType, Convert.ToDateTime(dateOfOpening), Convert.ToDouble(textBox2.Text));
+                    AccountID = A.Create(AccountType, DateTime.Now, Convert.ToDouble(textBox2.Text));
                     UserDAO udao = new UserDAO();
                     udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
+                    MessageBox.Show("Account added successfully!");
                 }
                 else
                 {
@@ -144,7 +146,7 @@ namespace ApteanEdgeBank
             }*/
 
             Customer cus = new Customer();
-            if (cus.CheckCustomerByID(CustomerID))
+            if (cus.CheckCustomerByID(Convert.ToInt32(textBox1.Text)))
             {
                 return true;
             }

@@ -78,7 +78,7 @@ namespace ApteanEdgeBank
             Console.WriteLine("Chequing Acoount:");
             Console.WriteLine("Account ID:{0}\nDate Opened:{1}\nBalance:{2}", accountID, dateOpened, Balance);*/
 
-            string myQuery = "insert into Account values("+"'"+accType+"'"+","+balance+","+"'"+open+"'"+","+"null"+")";
+            string myQuery = "insert into Account values("+accType+","+balance+","+"'"+open+"'"+","+"null"+")";
             string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             UserDAO dao = new UserDAO();
             dao.InsertData(myQuery, connectionstring);
@@ -121,7 +121,7 @@ namespace ApteanEdgeBank
                 
                 dateOpened = open;
                 Balance = balance;
-                string myQuery = "insert into Account values(" + "'" + accType + "'" + "," + balance + "," + "'" + open + "'" + "," + "null" + ")";
+                string myQuery = "insert into Account values(" + accType + "," + balance + "," + "'" + open + "'" + "," + "null" + ")";
                 string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
                 UserDAO dao = new UserDAO();
                 dao.InsertData(myQuery, connectionstring);
