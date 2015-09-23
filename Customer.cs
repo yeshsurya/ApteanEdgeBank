@@ -31,11 +31,12 @@ namespace ApteanEdgeBank
             lastName = lastNameP;
             dateOfBirth = dateOfBirthP.Date;
             dateOfJoining = DateTime.Now.Date;
+
             UserDAO dbAccess = new UserDAO();
             string myQuery = @"use ApteanEdgeBank insert into Customer (FirstName,MiddleName,LastName,DateOfJoining,DateOfBirth) values('" + firstNameP + "'" + "," + "'" + middleName + "'" + "," + "'" + lastNameP + "'" + "," + "cast(getdate() as date)" + "," + "'" + dateOfBirth.Date.ToShortDateString() + "')" ;
            // System.Windows.Forms.MessageBox.Show(myQuery);
             dbAccess.InsertData(myQuery, UserDAO.connectionString);
-            //System.Windows.Forms.MessageBox.Show(myQuery);
+           //System.Windows.Forms.MessageBox.Show(myQuery);
             System.Windows.Forms.MessageBox.Show("Customer Added successfully");
         }
         public Customer() { }

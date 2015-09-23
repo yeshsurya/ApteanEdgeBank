@@ -43,7 +43,7 @@ namespace ApteanEdgeBank
             try
             {
                 getConnection();
-                myQuery = "select FirstName,LastName from Customer order by FirstName ";
+                myQuery = "select FirstName,LastName from Customer order by FirstName";
                 cmd = new SqlCommand(myQuery, conn);
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);

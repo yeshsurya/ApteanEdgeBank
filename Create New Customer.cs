@@ -71,9 +71,15 @@ namespace ApteanEdgeBank
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             dateOfBirthBox.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
+            int years = DateTime.Now.Year - DateTime.Parse(dateOfBirthBox.Text.ToString()).Year;
+            if (years > 0)
+            {
+                MessageBox.Show("Invalild age");
+            }
+        }
             
            // MessageBox.Show(dateOfBirthBox.Text);
-        }
+        
 
         private void Create_New_Customer_Load(object sender, EventArgs e)
         {
@@ -82,8 +88,7 @@ namespace ApteanEdgeBank
 
         private void dateOfBirthBox_TextChanged(object sender, EventArgs e)
         {
-
-            monthCalendar1.Show();
+            dateOfBirthBox.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
         }
 
         private void dateOfBirthBox_Click(object sender, EventArgs e)

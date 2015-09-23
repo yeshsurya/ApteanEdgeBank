@@ -20,3 +20,25 @@ C:\Users\ynagraj\documents\visual studio 2012\Projects\ConceptsLearnig\ApteanEdg
 C:\Users\ynagraj\documents\visual studio 2012\Projects\ConceptsLearnig\ApteanEdgeBank\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.EditCustomerProfile.resources
 C:\Users\ynagraj\Documents\Visual Studio 2012\Projects\ConceptsLearnig\ApteanEdgeBank\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.csprojResolveAssemblyReference.cache
 C:\Users\ynagraj\documents\visual studio 2012\Projects\ConceptsLearnig\ApteanEdgeBank\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.ReadCustomerAccountList.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\bin\Debug\ApteanEdgeBank.exe.config
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.exe
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.pdb
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\bin\Debug\ApteanEdgeBank.exe
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\bin\Debug\ApteanEdgeBank.pdb
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.CloseAccount.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.Create_New_Customer.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.Deposit.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.EditCustomerProfile.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.ListAccountDetails.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.ListOfCustomers.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.NewAccount.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.ReadCustomerAccountList.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.ReOpenAccount.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.Update_Customer_Profile.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.ViewCustomerProfile.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.WelcomeScreen.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.BankManagerDashboard.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.CustomerDetails.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.Properties.Resources.resources
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.csproj.GenerateResource.Cache
+C:\Users\nkashyap\Documents\GitHub\ApteanEdgeBank\obj\Debug\ApteanEdgeBank.csprojResolveAssemblyReference.cache
