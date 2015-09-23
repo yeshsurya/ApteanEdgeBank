@@ -36,8 +36,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tfsAccount = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateOfOpening = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -120,30 +118,11 @@
             this.tfsAccount.UseVisualStyleBackColor = true;
             this.tfsAccount.CheckedChanged += new System.EventHandler(this.tfsAccount_CheckedChanged);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 104);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Date Of Opening";
-            // 
-            // dateOfOpening
-            // 
-            this.dateOfOpening.Location = new System.Drawing.Point(127, 104);
-            this.dateOfOpening.Name = "dateOfOpening";
-            this.dateOfOpening.Size = new System.Drawing.Size(200, 20);
-            this.dateOfOpening.TabIndex = 13;
-            this.dateOfOpening.ValueChanged += new System.EventHandler(this.dateOfOpening_ValueChanged);
-            // 
             // NewAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 261);
-            this.Controls.Add(this.dateOfOpening);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.tfsAccount);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button2);
@@ -170,7 +149,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton tfsAccount;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateOfOpening;
     }
 }

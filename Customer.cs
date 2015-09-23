@@ -14,7 +14,7 @@ namespace ApteanEdgeBank
     {
           //int customerID;
          string firstName;
-         string middleName;
+         //string middleName;
          string lastName;
          DateTime dateOfJoining;
          DateTime dateOfBirth;
@@ -24,15 +24,15 @@ namespace ApteanEdgeBank
         
 
         //constructor
-        public void AddNewCutomer(string firstNameP, string middleNameP, string lastNameP,DateTime dateOfBirthP)
+        public void AddNewCutomer(string firstNameP,  string lastNameP,DateTime dateOfBirthP)
         {
             firstName = firstNameP;
-            middleName = middleNameP;
+            //middleName = middleNameP;
             lastName = lastNameP;
             dateOfBirth = dateOfBirthP.Date;
             dateOfJoining = DateTime.Now.Date;
             UserDAO dbAccess = new UserDAO();
-            string myQuery = @"use ApteanEdgeBank insert into Customer (FirstName,MiddleName,LastName,DateOfJoining,DateOfBirth) values('" + firstNameP + "'" + "," + "'" + middleName + "'" + "," + "'" + lastNameP + "'" + "," + "cast(getdate() as date)" + "," + "'" + dateOfBirth.Date.ToShortDateString() + "')" ;
+            string myQuery = @"use ApteanEdgeBank insert into Customer (FirstName,LastName,DateOfJoining,DateOfBirth) values('" + firstNameP + "'" + "," + "'" + lastNameP + "'" + "," + "cast(getdate() as date)" + "," + "'" + dateOfBirth.Date.ToShortDateString() + "')" ;
            // System.Windows.Forms.MessageBox.Show(myQuery);
             dbAccess.InsertData(myQuery, UserDAO.connectionString);
             //System.Windows.Forms.MessageBox.Show(myQuery);
@@ -40,7 +40,19 @@ namespace ApteanEdgeBank
         }
         public Customer() { }
 
-
+        public bool CheckCustomerByID(int customerId)
+        {
+            UserDAO dao = new UserDAO();
+            DataTable customerTable = new DataTable();
+            string myQuery = "select * from Customer where CustomerID=" + customerId;
+            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            customerTable = dao.GetData(myQuery, connectionstring);
+            if (customerTable.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
 
         public bool DoCustomerExists(string Fname, string Lname, string dateOfBirth)  // returns true if customer already exists in the database else returns false
@@ -73,7 +85,7 @@ namespace ApteanEdgeBank
             int i = 0;
             for (; i < (temp.Rows.Count); i++)
             {
-                if (firstName == (string)temp.Rows[i]["FirstName"] && lastName == (string)temp.Rows[i]["LastName"] && middleName == (string)temp.Rows[i]["MiddleName"] && dateOfBirth.ToString() == Convert.ToString(temp.Rows[i]["DateOfBirth"]))
+                if (firstName == (string)temp.Rows[i]["FirstName"] && lastName == (string)temp.Rows[i]["LastName"] && dateOfBirth.ToString() == Convert.ToString(temp.Rows[i]["DateOfBirth"]))
                 { customerID = (Int64)temp.Rows[i]["CustomerID"]; break; }
                 else
                     continue;
