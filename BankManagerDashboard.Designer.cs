@@ -202,6 +202,7 @@
             this.withDrawToolStripMenuItem.Name = "withDrawToolStripMenuItem";
             this.withDrawToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.withDrawToolStripMenuItem.Text = "WithDraw";
+            this.withDrawToolStripMenuItem.Click += new System.EventHandler(this.withDrawToolStripMenuItem_Click);
             // 
             // liabilityAccountToolStripMenuItem
             // 

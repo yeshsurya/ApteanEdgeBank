@@ -96,5 +96,11 @@ namespace ApteanEdgeBank
             ReadCustomerAccountList nextForm = new ReadCustomerAccountList();
             nextForm.ShowDialog();
         }
+
+        private void withDrawToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Withdraw nextForm = new Withdraw();
+            nextForm.ShowDialog();
+        }
     }
 }

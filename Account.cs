@@ -28,7 +28,7 @@ namespace ApteanEdgeBank
             Balance = Balance - amount;
             if (Balance > 0)
             {
-                string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID in (select AccountID from CustomerAccount)";
+                string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID="+accID;
                 
                 //UserDAO dao = new UserDAO();
                 dao.UpdateData(myQuery, connectionstring);
@@ -65,6 +65,8 @@ namespace ApteanEdgeBank
             }
             return false;
         }
+
+       
     }
 
     public class ChequingAccount : Account
@@ -96,7 +98,7 @@ namespace ApteanEdgeBank
         dt=dao.GetData("Select AccountBalance from Account where AccountID="+accId,connectionstring);
         Balance=Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
         Balance=Balance+amount;
-        string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID in (select AccountID from CustomerAccount)";
+        string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID="+accId;
 
         //UserDAO dao = new UserDAO();
         dao.UpdateData(myQuery, connectionstring);
@@ -148,7 +150,7 @@ namespace ApteanEdgeBank
         {
 
             Balance = Balance + amount;
-            string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID in (select AccountID from CustomerAccount)";
+            string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID="+accID;
 
             //UserDAO dao = new UserDAO();
             dao.UpdateData(myQuery, connectionstring);

@@ -46,7 +46,10 @@ namespace ApteanEdgeBank
         {
 
             if (CustomerAvailabilityCheck()) { MessageBox.Show("Customer Found"); }
-            else { MessageBox.Show("Customer Not Found, Please Create Customer First"); }
+            else { 
+                MessageBox.Show("Customer Not Found, Please Create Customer First");
+                button2.Enabled = false;
+            }
 
 
 
