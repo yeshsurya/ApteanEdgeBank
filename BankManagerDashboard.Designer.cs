@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BankManagerDashboard));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortByNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +52,11 @@
             this.ledgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readAccountActivityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateAccountBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bankGeneralAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.availableBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -67,39 +69,17 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customerToolStripMenuItem,
             this.customerManagementToolStripMenuItem,
             this.accountToolStripMenuItem,
             this.liabilityAccountToolStripMenuItem,
-            this.ledgerToolStripMenuItem});
+            this.ledgerToolStripMenuItem,
+            this.customerToolStripMenuItem,
+            this.bankGeneralAccountToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(858, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // customerToolStripMenuItem
-            // 
-            this.customerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.updateToolStripMenuItem});
-            this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.customerToolStripMenuItem.Text = "Customer";
-            // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.updateToolStripMenuItem.Text = "Update Customer Profile";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
             // 
             // customerManagementToolStripMenuItem
             // 
@@ -246,6 +226,7 @@
             this.ledgerToolStripMenuItem.Name = "ledgerToolStripMenuItem";
             this.ledgerToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.ledgerToolStripMenuItem.Text = "Ledger";
+            this.ledgerToolStripMenuItem.Click += new System.EventHandler(this.ledgerToolStripMenuItem_Click);
             // 
             // readAccountActivityToolStripMenuItem
             // 
@@ -258,6 +239,44 @@
             this.calculateAccountBalanceToolStripMenuItem.Name = "calculateAccountBalanceToolStripMenuItem";
             this.calculateAccountBalanceToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.calculateAccountBalanceToolStripMenuItem.Text = "Calculate Account Balance";
+            // 
+            // customerToolStripMenuItem
+            // 
+            this.customerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.updateToolStripMenuItem});
+            this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
+            this.customerToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.customerToolStripMenuItem.Text = "Customer";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.updateToolStripMenuItem.Text = "Update Customer Profile";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
+            // 
+            // bankGeneralAccountToolStripMenuItem
+            // 
+            this.bankGeneralAccountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.availableBalanceToolStripMenuItem});
+            this.bankGeneralAccountToolStripMenuItem.Name = "bankGeneralAccountToolStripMenuItem";
+            this.bankGeneralAccountToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.bankGeneralAccountToolStripMenuItem.Text = "Bank General Account";
+            // 
+            // availableBalanceToolStripMenuItem
+            // 
+            this.availableBalanceToolStripMenuItem.Name = "availableBalanceToolStripMenuItem";
+            this.availableBalanceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.availableBalanceToolStripMenuItem.Text = "Account Balance";
+            this.availableBalanceToolStripMenuItem.Click += new System.EventHandler(this.availableBalanceToolStripMenuItem_Click);
             // 
             // imageList1
             // 
@@ -337,5 +356,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem bankGeneralAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem availableBalanceToolStripMenuItem;
     }
 }

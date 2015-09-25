@@ -96,5 +96,16 @@ namespace ApteanEdgeBank
             ReadCustomerAccountList nextForm = new ReadCustomerAccountList();
             nextForm.ShowDialog();
         }
+
+        private void ledgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void availableBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BankGeneralAccountForm bg = new BankGeneralAccountForm();
+            bg.ShowDialog();
+        }
     }
 }
