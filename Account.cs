@@ -32,6 +32,8 @@ namespace ApteanEdgeBank
                 
                 //UserDAO dao = new UserDAO();
                 dao.UpdateData(myQuery, connectionstring);
+                AccountActivityLedger Ledger = new AccountActivityLedger();
+                Ledger.AddAccountActivity(accID, "Withdraw",amount, DateTime.Now);
 
             }
             //string myQuery="up
@@ -102,6 +104,8 @@ namespace ApteanEdgeBank
 
         //UserDAO dao = new UserDAO();
         dao.UpdateData(myQuery, connectionstring);
+        AccountActivityLedger Ledger = new AccountActivityLedger();
+        Ledger.AddAccountActivity(accId, "Deposit", amount, DateTime.Now);
     }
 
     }
@@ -154,6 +158,8 @@ namespace ApteanEdgeBank
 
             //UserDAO dao = new UserDAO();
             dao.UpdateData(myQuery, connectionstring);
+            AccountActivityLedger Ledger = new AccountActivityLedger();
+            Ledger.AddAccountActivity(accID, "Deposit", amount, DateTime.Now);
         }
 
         else
