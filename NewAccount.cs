@@ -93,11 +93,18 @@ namespace ApteanEdgeBank
 
                 else if (AccountType == "'TFS'")
                 {
-                    Account A = new TaxFreeSavingsAccount();
-                    AccountID = A.Create(AccountType, DateTime.Now, Convert.ToDouble(textBox2.Text));
-                    UserDAO udao = new UserDAO();
-                    udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
-                    MessageBox.Show("Account added successfully!");
+                    try
+                    {
+                        Account A = new TaxFreeSavingsAccount();
+                        AccountID = A.Create(AccountType, DateTime.Now, Convert.ToDouble(textBox2.Text));
+                        UserDAO udao = new UserDAO();
+                        udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
+                        MessageBox.Show("Account added successfully!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Check if the fields are filled properly!"+ex);
+                    }
                 }
                 else
                 {
@@ -147,13 +154,20 @@ namespace ApteanEdgeBank
             {
                  return false;
             }*/
-
-            Customer cus = new Customer();
-            if (cus.CheckCustomerByID(Convert.ToInt32(textBox1.Text)))
+            try
             {
-                return true;
+                Customer cus = new Customer();
+                if (cus.CheckCustomerByID(Convert.ToInt32(textBox1.Text)))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please provide a valid customer id!");
+                return false;
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
