@@ -45,6 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AccountActivityLedger.cs" />
+    <Compile Include="AddAccountActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAccountActivity.Designer.cs">
+      <DependentUpon>AddAccountActivity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalculateAccountBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalculateAccountBalance.Designer.cs">
+      <DependentUpon>CalculateAccountBalance.cs</DependentUpon>
+    </Compile>
     <Compile Include="CloseAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +101,12 @@
     </Compile>
     <Compile Include="NewAccount.Designer.cs">
       <DependentUpon>NewAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadAccountActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadAccountActivity.Designer.cs">
+      <DependentUpon>ReadAccountActivity.cs</DependentUpon>
     </Compile>
     <Compile Include="ReadCustomerAccountList.cs">
       <SubType>Form</SubType>
@@ -140,6 +159,12 @@
     <Compile Include="Withdraw.Designer.cs">
       <DependentUpon>Withdraw.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAccountActivity.resx">
+      <DependentUpon>AddAccountActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalculateAccountBalance.resx">
+      <DependentUpon>CalculateAccountBalance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CloseAccount.resx">
       <DependentUpon>CloseAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewAccount.resx">
       <DependentUpon>NewAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadAccountActivity.resx">
+      <DependentUpon>ReadAccountActivity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReadCustomerAccountList.resx">
       <DependentUpon>ReadCustomerAccountList.cs</DependentUpon>

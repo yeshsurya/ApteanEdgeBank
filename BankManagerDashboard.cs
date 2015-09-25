@@ -102,5 +102,22 @@ namespace ApteanEdgeBank
             Withdraw nextForm = new Withdraw();
             nextForm.ShowDialog();
         }
+
+        private void addAccountActivityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void readAccountActivityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReadAccountActivity nextForm = new ReadAccountActivity();
+            nextForm.Show();
+        }
+
+        private void calculateAccountBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CalculateAccountBalance nextForm = new CalculateAccountBalance();
+            nextForm.Show();
+        }
     }
 }
