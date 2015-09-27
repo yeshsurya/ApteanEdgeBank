@@ -84,22 +84,45 @@ namespace ApteanEdgeBank
                 //AccountID=0;
                 if (AccountType == "'CA'")
                 {
-                    Account A = new ChequingAccount();
-                    AccountID=A.Create(AccountType,DateTime.Now, Convert.ToDouble(textBox2.Text));
-                    UserDAO udao = new UserDAO();
-                    udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
-                    MessageBox.Show("Account added successfully!");
+                    try
+                    {
+                        ChequingAccount A = new ChequingAccount();
+                        bool flag = A.DoesChequingAccountExist(CustomerID);
+                        if (flag == false)
+                        {
+                            AccountID = A.Create(AccountType, DateTime.Now, Convert.ToDouble(textBox2.Text));
+                            UserDAO udao = new UserDAO();
+                            udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
+                            MessageBox.Show("Account added successfully!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Chequing account for this cutomer already exists!");
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("Check if the fields are filled properly!");
+                    }
                 }
 
                 else if (AccountType == "'TFS'")
                 {
                     try
                     {
-                        Account A = new TaxFreeSavingsAccount();
-                        AccountID = A.Create(AccountType, DateTime.Now, Convert.ToDouble(textBox2.Text));
-                        UserDAO udao = new UserDAO();
-                        udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
-                        MessageBox.Show("Account added successfully!");
+                        TaxFreeSavingsAccount A = new TaxFreeSavingsAccount();
+                        bool flag = A.DoesTFSAccountExist(CustomerID);
+                        if (flag == false)
+                        {
+                            AccountID = A.Create(AccountType, DateTime.Now, Convert.ToDouble(textBox2.Text));
+                            UserDAO udao = new UserDAO();
+                            udao.InsertData("use ApteanEdgeBank insert into CustomerAccount values(" + CustomerID + "," + AccountID + ")", UserDAO.connectionString);
+                            MessageBox.Show("Account added successfully!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("TFS account for this customer already exists!");
+                        }
                     }
                     catch (Exception ex)
                     {
