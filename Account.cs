@@ -36,6 +36,7 @@ namespace ApteanEdgeBank
                 dao.UpdateData(myQuery, connectionstring);
                 AccountActivityLedger Ledger = new AccountActivityLedger();
                 Ledger.AddAccountActivity(accID, "Withdraw",amount, DateTime.Now);
+                MessageBox.Show("Amount withdraw Successful!");
 
             }
             //string myQuery="up

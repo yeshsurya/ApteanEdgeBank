@@ -74,7 +74,7 @@ where Account.DateOfClosing is null", UserDAO.connectionString);
             }
             else if (Convert.ToString(dt.Rows[0]["AccountType"]) == "TFS")
             {
-                Type = "TFA";
+                Type = "TFS";
                 return Type;
             }
             else if (Convert.ToString(dt.Rows[0]["AccountType"]) == "LA")
@@ -138,13 +138,13 @@ set AccountBalance=AccountBalance+"+Convert.ToString(textBox1.Text)+@"where Acco
                 {
                     Account A = new ChequingAccount();
                     A.Withdraw(Convert.ToDouble(textBox2.Text), Convert.ToInt32(selectdAccountID));
-                    MessageBox.Show("Amount withdraw successfull!");
+                    //MessageBox.Show("Amount withdraw successfull!");
                 }
                 else if (GetAccountType(Convert.ToInt32(selectdAccountID)) == "TFS")
                 {
                     Account A = new TaxFreeSavingsAccount();
                     A.Withdraw(Convert.ToDouble(textBox2.Text), Convert.ToInt32(selectdAccountID));
-                    MessageBox.Show("Amount withdraw successfull!");
+                    //MessageBox.Show("Amount withdraw successfull!");
                 }
                 else
                 {
