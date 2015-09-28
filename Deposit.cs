@@ -58,13 +58,21 @@ namespace ApteanEdgeBank
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            loadTable();
+            DataTable dt = new DataTable();
+            dt=loadTable();
          
-            for (int i = 0; i < dataTable.Rows.Count; i++)
+           /* for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 if (Convert.ToString(dataTable.Rows[i]["CustomerID"]) == CustomerID)
                 {
                     listBox1.Items.Add(Convert.ToString(dataTable.Rows[i]["AccountID"]));
+                }
+            }*/
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Convert.ToString(row["CustomerID"]) == CustomerID)
+                {
+                    listBox1.Items.Add(Convert.ToString(row["AccountID"]));
                 }
             }
         }
@@ -76,7 +84,7 @@ namespace ApteanEdgeBank
                 e.Handled = true;
             }
         }
-        private void loadTable()
+        private DataTable loadTable()
         {
             dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
  from Account inner join CustomerAccount
@@ -86,6 +94,7 @@ inner join Customer
 on
 Customer.CustomerID = CustomerAccount.CustomerID
 where Account.DateOfClosing is null", UserDAO.connectionString);
+            return dataTable;
         }
 
         public string GetAccountType(int accId)
@@ -103,7 +112,7 @@ where Account.DateOfClosing is null", UserDAO.connectionString);
             }
             else if (Convert.ToString(dt.Rows[0]["AccountType"]) == "TFS")
             {
-               Type="TFA";
+               Type="TFS";
                 return Type;
             }
             else if (Convert.ToString(dt.Rows[0]["AccountType"]) == "LA")
@@ -137,13 +146,16 @@ set AccountBalance=AccountBalance+"+Convert.ToString(textBox1.Text)+@"where Acco
                 {
                     Account A = new ChequingAccount();
                     A.Deposit(Convert.ToDouble(textBox1.Text), Convert.ToInt32(selectdAccountID));
+                    AccountActivityLedger Ledger = new AccountActivityLedger();
+                    double newBalance = Ledger.CalculateAccountBalance(Convert.ToInt32(selectdAccountID));
+                    label4.Text = "Balance: $" + Convert.ToString(newBalance);
                     MessageBox.Show("Amount deposited successfully!");
                 }
                 else if (GetAccountType(Convert.ToInt32(selectdAccountID)) == "TFS")
                 {
                     Account A = new TaxFreeSavingsAccount();
                     A.Deposit(Convert.ToDouble(textBox1.Text), Convert.ToInt32(selectdAccountID));
-                    MessageBox.Show("Amount deposited successfully!");
+                    //MessageBox.Show("Amount deposited successfully!");
                 }
                 else
                 {

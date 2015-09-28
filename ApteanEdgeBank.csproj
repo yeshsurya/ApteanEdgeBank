@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +53,13 @@
     <Compile Include="AddAccountActivity.Designer.cs">
       <DependentUpon>AddAccountActivity.cs</DependentUpon>
     </Compile>
+    <Compile Include="BankAccountBalance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BankAccountBalance.Designer.cs">
+      <DependentUpon>BankAccountBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BankGeneralAccount.cs" />
     <Compile Include="CalculateAccountBalance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +169,9 @@
     </Compile>
     <EmbeddedResource Include="AddAccountActivity.resx">
       <DependentUpon>AddAccountActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankAccountBalance.resx">
+      <DependentUpon>BankAccountBalance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalculateAccountBalance.resx">
       <DependentUpon>CalculateAccountBalance.cs</DependentUpon>

@@ -119,5 +119,11 @@ namespace ApteanEdgeBank
             CalculateAccountBalance nextForm = new CalculateAccountBalance();
             nextForm.Show();
         }
+
+        private void showBankBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BankAccountBalance nextForm = new BankAccountBalance();
+            nextForm.Show();
+        }
     }
 }

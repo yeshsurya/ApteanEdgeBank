@@ -171,14 +171,11 @@ namespace ApteanEdgeBank
                 //open the connection
                 myConnection.Open();
                 int rows = cmd.ExecuteNonQuery();
-                if (rows > 0)
-                {
-                    MessageBox.Show(rows + " Rows affected");
-                }
-                else
+                if (rows <= 0)
                 {
                     MessageBox.Show("Update unsuccessful!");
                 }
+            
                 //fill data in command
                //myAdapter.Fill(dt);
 

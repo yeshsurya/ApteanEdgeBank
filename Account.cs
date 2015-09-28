@@ -23,6 +23,7 @@ namespace ApteanEdgeBank
             UserDAO dao=new UserDAO();
             DataTable dt=new DataTable();
             string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            BankGeneralAccount bg = new BankGeneralAccount();
             dt=dao.GetData("Select AccountBalance from Account where AccountID="+accID,connectionstring);
             Balance=Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
             Balance = Balance - amount;
@@ -31,9 +32,11 @@ namespace ApteanEdgeBank
                 string myQuery = "Update Account set AccountBalance=" + Balance + " where AccountID="+accID;
                 
                 //UserDAO dao = new UserDAO();
+                bg.BgaWithdraw(amount);
                 dao.UpdateData(myQuery, connectionstring);
                 AccountActivityLedger Ledger = new AccountActivityLedger();
                 Ledger.AddAccountActivity(accID, "Withdraw",amount, DateTime.Now);
+                MessageBox.Show("Amount withdraw Successful!");
 
             }
             //string myQuery="up
@@ -68,7 +71,6 @@ namespace ApteanEdgeBank
             return false;
         }
 
-       
     }
 
     public class ChequingAccount : Account
@@ -84,8 +86,10 @@ namespace ApteanEdgeBank
 
             string myQuery = "insert into Account values("+accType+","+balance+","+"'"+open+"'"+","+"null"+")";
             string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            BankGeneralAccount bg = new BankGeneralAccount();
             UserDAO dao = new UserDAO();
             dao.InsertData(myQuery, connectionstring);
+            bg.BgaDeposit(balance);
             DataTable dataTable = dao.GetData("use ApteanEdgeBank select max(AccountID) as max from Account", UserDAO.connectionString);
             int AccountID = Convert.ToInt32(dataTable.Rows[0]["max"]);
             return AccountID;
@@ -97,6 +101,7 @@ namespace ApteanEdgeBank
         UserDAO dao=new UserDAO();
         DataTable dt=new DataTable();
         string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+        BankGeneralAccount bg = new BankGeneralAccount();
         dt=dao.GetData("Select AccountBalance from Account where AccountID="+accId,connectionstring);
         Balance=Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
         Balance=Balance+amount;
@@ -104,9 +109,34 @@ namespace ApteanEdgeBank
 
         //UserDAO dao = new UserDAO();
         dao.UpdateData(myQuery, connectionstring);
+        bg.BgaDeposit(amount);
         AccountActivityLedger Ledger = new AccountActivityLedger();
         Ledger.AddAccountActivity(accId, "Deposit", amount, DateTime.Now);
     }
+
+        // To make sure that only one account of each type exists
+        public bool DoesChequingAccountExist(int customerID)
+        {
+            UserDAO dao = new UserDAO();
+            DataTable customerAccounts = new DataTable();
+            int chequingAccount = 0;
+            string query = "Select * from Account where AccountID in (select AccountID from CustomerAccount where CustomerID=" + customerID + ")";
+            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            customerAccounts = dao.GetData(query, connectionstring);
+            foreach (DataRow row in customerAccounts.Rows)
+            {
+                if (Convert.ToString(row["AccountType"]) == "CA")
+                {
+                    chequingAccount++;
+                }
+            }
+            if (chequingAccount == 0)//if there is no chequing account for customer
+            {
+                return false;//there is no CA for this customer
+            }
+
+            return true;//this customer already has a chequing account
+        }
 
     }
 
@@ -129,8 +159,10 @@ namespace ApteanEdgeBank
                 Balance = balance;
                 string myQuery = "insert into Account values(" + accType + "," + balance + "," + "'" + open + "'" + "," + "null" + ")";
                 string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+                BankGeneralAccount bg = new BankGeneralAccount();
                 UserDAO dao = new UserDAO();
                 dao.InsertData(myQuery, connectionstring);
+                bg.BgaDeposit(balance);
                 DataTable dataTable = dao.GetData("use ApteanEdgeBank select max(AccountID) as max from Account", UserDAO.connectionString);
                 int AccountID = Convert.ToInt32(dataTable.Rows[0]["max"]);
                 return AccountID;
@@ -148,9 +180,10 @@ namespace ApteanEdgeBank
         UserDAO dao = new UserDAO();
         DataTable dt = new DataTable();
         string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+        BankGeneralAccount bg = new BankGeneralAccount();
         dt = dao.GetData("Select AccountBalance from Account where AccountID=" + accID, connectionstring);
         Balance = Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
-        if ((Balance + amount) < 5000)
+        if ((Balance + amount) <= 5000)
         {
 
             Balance = Balance + amount;
@@ -158,8 +191,10 @@ namespace ApteanEdgeBank
 
             //UserDAO dao = new UserDAO();
             dao.UpdateData(myQuery, connectionstring);
+            bg.BgaDeposit(amount);
             AccountActivityLedger Ledger = new AccountActivityLedger();
             Ledger.AddAccountActivity(accID, "Deposit", amount, DateTime.Now);
+            MessageBox.Show("Amount deposited successfully!");
         }
 
         else
@@ -168,5 +203,30 @@ namespace ApteanEdgeBank
         }
             
     }
+
+        public bool DoesTFSAccountExist(int customerID)
+        {
+            UserDAO dao = new UserDAO();
+            DataTable customerAccounts = new DataTable();
+            int TFSAccount = 0;
+            string query = "Select * from Account where AccountID in (select AccountID from CustomerAccount where CustomerID=" + customerID + ")";
+            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            customerAccounts = dao.GetData(query, connectionstring);
+            foreach (DataRow row in customerAccounts.Rows)
+            {
+                if (Convert.ToString(row["AccountType"]) == "TFS")
+                {
+                    TFSAccount++;
+                }
+            }
+            if (TFSAccount == 0)//if there is no TFS account for customer
+            {
+                return false;//there is no TFS for this customer
+            }
+
+            return true;//this customer already has a TFS account
+        }
+       
+
     }
 }
