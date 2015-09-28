@@ -91,7 +91,7 @@ namespace ApteanEdgeBank
             }
            
         }
-        private bool CustomerAvailabilityCheck()
+        public bool CustomerAvailabilityCheck()
         {
             UserDAO udao = new UserDAO();
             DataTable dataTable = new DataTable();

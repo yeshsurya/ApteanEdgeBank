@@ -96,5 +96,24 @@ namespace ApteanEdgeBank
             ReadCustomerAccountList nextForm = new ReadCustomerAccountList();
             nextForm.ShowDialog();
         }
+
+        private void newToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            LiabilityForm nextform = new LiabilityForm();
+            nextform.ShowDialog();
+
+        }
+
+        private void readAccDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LiabilityReadDetailsForm nextform = new LiabilityReadDetailsForm();
+            nextform.ShowDialog();
+        }
+
+        private void iToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LiabilityIssueLoanForm nextform = new LiabilityIssueLoanForm();
+            nextform.ShowDialog();
+        }
     }
 }

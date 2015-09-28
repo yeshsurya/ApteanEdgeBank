@@ -219,18 +219,21 @@
             this.newToolStripMenuItem2.Name = "newToolStripMenuItem2";
             this.newToolStripMenuItem2.Size = new System.Drawing.Size(164, 22);
             this.newToolStripMenuItem2.Text = "New";
+            this.newToolStripMenuItem2.Click += new System.EventHandler(this.newToolStripMenuItem2_Click);
             // 
             // readAccDetailsToolStripMenuItem
             // 
             this.readAccDetailsToolStripMenuItem.Name = "readAccDetailsToolStripMenuItem";
             this.readAccDetailsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.readAccDetailsToolStripMenuItem.Text = "Read Acc. Details";
+            this.readAccDetailsToolStripMenuItem.Click += new System.EventHandler(this.readAccDetailsToolStripMenuItem_Click);
             // 
             // iToolStripMenuItem
             // 
             this.iToolStripMenuItem.Name = "iToolStripMenuItem";
             this.iToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.iToolStripMenuItem.Text = "Issue Loan";
+            this.iToolStripMenuItem.Click += new System.EventHandler(this.iToolStripMenuItem_Click);
             // 
             // loanRepaymentToolStripMenuItem
             // 

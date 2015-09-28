@@ -70,6 +70,37 @@
     <Compile Include="EditCustomerProfile.Designer.cs">
       <DependentUpon>EditCustomerProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Liability_IssueLoan_Account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Liability_IssueLoan_Account.Designer.cs">
+      <DependentUpon>Liability_IssueLoan_Account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ILiability.cs" />
+    <Compile Include="LiabilityRepayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiabilityRepayForm.Designer.cs">
+      <DependentUpon>LiabilityRepayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LiabilityIssueLoanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiabilityIssueLoanForm.Designer.cs">
+      <DependentUpon>LiabilityIssueLoanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LiabilityReadDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiabilityReadDetailsForm.Designer.cs">
+      <DependentUpon>LiabilityReadDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LiabilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LiabilityForm.Designer.cs">
+      <DependentUpon>LiabilityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Liability.cs" />
     <Compile Include="ListAccountDetails.cs">
       <SubType>Form</SubType>
@@ -145,6 +176,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditCustomerProfile.resx">
       <DependentUpon>EditCustomerProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Liability_IssueLoan_Account.resx">
+      <DependentUpon>Liability_IssueLoan_Account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiabilityRepayForm.resx">
+      <DependentUpon>LiabilityRepayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiabilityIssueLoanForm.resx">
+      <DependentUpon>LiabilityIssueLoanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiabilityReadDetailsForm.resx">
+      <DependentUpon>LiabilityReadDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LiabilityForm.resx">
+      <DependentUpon>LiabilityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListAccountDetails.resx">
       <DependentUpon>ListAccountDetails.cs</DependentUpon>
