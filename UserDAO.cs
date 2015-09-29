@@ -90,6 +90,18 @@ namespace ApteanEdgeBank
             return true;
         }
 
+        public DataTable loadTable()
+        {
+           DataTable dataTable = GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
+ from Account inner join CustomerAccount
+on 
+Account.AccountID=CustomerAccount.AccountID
+inner join Customer
+on
+Customer.CustomerID = CustomerAccount.CustomerID
+where Account.DateOfClosing is null", UserDAO.connectionString);
+            return dataTable;
+        }
 
         public DataTable GetData(string myQuery,string connectionString)   // data returned for the myQery will be returned as a DataTable
         {

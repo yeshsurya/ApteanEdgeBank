@@ -52,14 +52,14 @@ namespace ApteanEdgeBank
 
         private void Deposit_Load(object sender, EventArgs e)
         {
-            loadTable();
+            dataAccess.loadTable();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
             DataTable dt = new DataTable();
-            dt=loadTable();
+            dt = dataAccess.loadTable(); 
          
            /* for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -84,7 +84,7 @@ namespace ApteanEdgeBank
                 e.Handled = true;
             }
         }
-        private DataTable loadTable()
+       /* private DataTable loadTable()
         {
             dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
  from Account inner join CustomerAccount
@@ -95,7 +95,7 @@ on
 Customer.CustomerID = CustomerAccount.CustomerID
 where Account.DateOfClosing is null", UserDAO.connectionString);
             return dataTable;
-        }
+        }*/
 
         public string GetAccountType(int accId)
         {
