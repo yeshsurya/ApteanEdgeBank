@@ -72,14 +72,15 @@ namespace ApteanEdgeBank
 
         private void CloseAccount_Load(object sender, EventArgs e)
         {
-            dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
+            /*dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
  from Account inner join CustomerAccount
 on 
 Account.AccountID=CustomerAccount.AccountID
 inner join Customer
 on
 Customer.CustomerID = CustomerAccount.CustomerID
-where Account.DateOfClosing is null", UserDAO.connectionString);
+where Account.DateOfClosing is null", UserDAO.connectionString);*/
+            dataTable = dataAccess.loadTable();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -91,12 +92,14 @@ where Account.DateOfClosing is null", UserDAO.connectionString);
             }
             else
             {
-                dataAccess.InsertData(@"use ApteanEdgeBank update Account
+                Account.Close(Convert.ToInt32(selectdAccountID));
+                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                /* dataAccess.InsertData(@"use ApteanEdgeBank update Account
 set DateOfClosing= cast(getdate() as date)
-where AccountID =" + selectdAccountID, UserDAO.connectionString);
+where AccountID =" + selectdAccountID, UserDAO.connectionString);*/
             }
 
-            listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            
 
         }
     }

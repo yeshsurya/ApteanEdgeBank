@@ -15,6 +15,7 @@ namespace ApteanEdgeBank
         public DateTime dateOpened;
         public DateTime dateClosed;
         public double Balance;
+        string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
 
         public abstract int Create(string accType,DateTime open,double balance);
         public abstract void Deposit(double amount,int accId);
@@ -22,7 +23,7 @@ namespace ApteanEdgeBank
         {
             UserDAO dao=new UserDAO();
             DataTable dt=new DataTable();
-            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            //string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             BankGeneralAccount bg = new BankGeneralAccount();
             dt=dao.GetData("Select AccountBalance from Account where AccountID="+accID,connectionstring);
             Balance=Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
@@ -43,17 +44,61 @@ namespace ApteanEdgeBank
             else
                 MessageBox.Show("Your balance is too low!");
         }
-        public void Close()
+        public static void Close(int accId)
         {
+           UserDAO dao=new UserDAO();
+            DataTable dt=new DataTable();
+            BankGeneralAccount bg = new BankGeneralAccount();
+            string queryString="Select * from Account where AccountID="+accId;
             try
             {
-                Balance = 0;
+                /*Balance = 0;
                 dateClosed = DateTime.Now;
-                Console.WriteLine("Account closed on {0}", dateClosed.ToShortDateString());
+                Console.WriteLine("Account closed on {0}", dateClosed.ToShortDateString());*/
+                dt = dao.GetData(queryString, UserDAO.connectionString);
+                if (Convert.ToDouble(dt.Rows[0]["AccountBalance"]) != 0.0)
+                {
+                   DialogResult result= MessageBox.Show("Your account balance is greater than 0! The balance must be 0 to close an account. Would you like to clear your account balance?","Account Balance is not 0!",MessageBoxButtons.YesNo);
+                   if (result == DialogResult.Yes)
+                   {
+                       //set closing date for the account. Deduct the remaining balance from bank general account and set the current balance to 0
+                       dao.InsertData(@"use ApteanEdgeBank update Account
+set DateOfClosing= cast(getdate() as date)
+where AccountID =" + accId, UserDAO.connectionString);
+                       bg.BgaWithdraw(Convert.ToDouble(dt.Rows[0]["AccountBalance"]));
+                       dao.UpdateData("update Account set AccountBalance=0 where AccountID=" + accId, UserDAO.connectionString);
+                   }
+                }
+                else
+                {
+                    dao.InsertData(@"use ApteanEdgeBank update Account
+set DateOfClosing= cast(getdate() as date)
+where AccountID =" + accId, UserDAO.connectionString);
+                }
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("Balance is greater than 0: {0}", e);
+                MessageBox.Show("Account closure failed!");
+            }
+        }
+
+        public static void Reopen(int accId,double reopeningBalance)
+        {
+            UserDAO dao = new UserDAO();
+            DataTable dt = new DataTable();
+            BankGeneralAccount bg = new BankGeneralAccount();
+            string queryString = "Select * from Account where AccountID=" + accId;
+            try
+            {
+                dao.InsertData(@"use ApteanEdgeBank update Account
+set DateOfClosing=null
+where AccountID =" + accId, UserDAO.connectionString);
+                dao.UpdateData("update Account set AccountBalance=" + reopeningBalance + "where AccountID=" + accId, UserDAO.connectionString);
+                bg.BgaDeposit(reopeningBalance);
+            }
+            catch (InvalidOperationException e)
+            {
+                MessageBox.Show("Account reopen failed!");
             }
         }
         
@@ -62,7 +107,7 @@ namespace ApteanEdgeBank
             UserDAO dao = new UserDAO();
             DataTable accTable = new DataTable();
             string myQuery = "select * from Account where AccountID=" + accID;
-            string connectionstring="Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            //string connectionstring="Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             accTable = dao.GetData(myQuery, connectionstring);
             if (accTable.Rows.Count > 0)
             {
@@ -75,7 +120,8 @@ namespace ApteanEdgeBank
 
     public class ChequingAccount : Account
     {
- 
+        string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+
         public override int Create(string accType,DateTime open,double balance)
         {
            /* accountID=ID;
@@ -85,7 +131,7 @@ namespace ApteanEdgeBank
             Console.WriteLine("Account ID:{0}\nDate Opened:{1}\nBalance:{2}", accountID, dateOpened, Balance);*/
 
             string myQuery = "insert into Account values("+accType+","+balance+","+"'"+open+"'"+","+"null"+")";
-            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+           // string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             BankGeneralAccount bg = new BankGeneralAccount();
             UserDAO dao = new UserDAO();
             dao.InsertData(myQuery, connectionstring);
@@ -100,7 +146,7 @@ namespace ApteanEdgeBank
     {
         UserDAO dao=new UserDAO();
         DataTable dt=new DataTable();
-        string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+        //string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
         BankGeneralAccount bg = new BankGeneralAccount();
         dt=dao.GetData("Select AccountBalance from Account where AccountID="+accId,connectionstring);
         Balance=Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
@@ -121,7 +167,7 @@ namespace ApteanEdgeBank
             DataTable customerAccounts = new DataTable();
             int chequingAccount = 0;
             string query = "Select * from Account where AccountID in (select AccountID from CustomerAccount where CustomerID=" + customerID + ")";
-            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+            //string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             customerAccounts = dao.GetData(query, connectionstring);
             foreach (DataRow row in customerAccounts.Rows)
             {
@@ -142,7 +188,7 @@ namespace ApteanEdgeBank
 
     public class TaxFreeSavingsAccount:Account    
     {
-    
+        string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
         public double Limit;
 
         public TaxFreeSavingsAccount()
@@ -158,7 +204,7 @@ namespace ApteanEdgeBank
                 dateOpened = open;
                 Balance = balance;
                 string myQuery = "insert into Account values(" + accType + "," + balance + "," + "'" + open + "'" + "," + "null" + ")";
-                string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+               // string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
                 BankGeneralAccount bg = new BankGeneralAccount();
                 UserDAO dao = new UserDAO();
                 dao.InsertData(myQuery, connectionstring);
@@ -179,7 +225,7 @@ namespace ApteanEdgeBank
     {
         UserDAO dao = new UserDAO();
         DataTable dt = new DataTable();
-        string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+        //string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
         BankGeneralAccount bg = new BankGeneralAccount();
         dt = dao.GetData("Select AccountBalance from Account where AccountID=" + accID, connectionstring);
         Balance = Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
@@ -210,7 +256,7 @@ namespace ApteanEdgeBank
             DataTable customerAccounts = new DataTable();
             int TFSAccount = 0;
             string query = "Select * from Account where AccountID in (select AccountID from CustomerAccount where CustomerID=" + customerID + ")";
-            string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
+           // string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             customerAccounts = dao.GetData(query, connectionstring);
             foreach (DataRow row in customerAccounts.Rows)
             {
