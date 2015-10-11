@@ -22,14 +22,15 @@ namespace ApteanEdgeBank
 
         private void ReOpenAccount_Load(object sender, EventArgs e)
         {
-            dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
+           /* dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
  from Account inner join CustomerAccount
 on 
 Account.AccountID=CustomerAccount.AccountID
 inner join Customer
 on
 Customer.CustomerID = CustomerAccount.CustomerID
-where Account.DateOfClosing is not null", UserDAO.connectionString);
+where Account.DateOfClosing is not null", UserDAO.connectionString);*/
+            dataTable = dataAccess.loadTableWhereDateIsNotNull();
         }
 
         private void customerIDBox_TextChanged(object sender, EventArgs e)
@@ -66,11 +67,13 @@ where Account.DateOfClosing is not null", UserDAO.connectionString);
             }
             else
             {
-                dataAccess.InsertData(@"use ApteanEdgeBank update Account
+                Account.Reopen(Convert.ToInt32(selectdAccountID), Convert.ToDouble(textBox1.Text));
+                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+               /* dataAccess.InsertData(@"use ApteanEdgeBank update Account
 set DateOfClosing=null
-where AccountID =" + selectdAccountID, UserDAO.connectionString);
+where AccountID =" + selectdAccountID, UserDAO.connectionString);*/
             }
-            listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+            
         }
 
         private void listBox1_Click(object sender, EventArgs e)
@@ -92,6 +95,14 @@ where AccountID =" + selectdAccountID, UserDAO.connectionString);
             {
 
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !(e.KeyChar == (char)Keys.Back) && !(e.KeyChar == (char)Keys.Delete))
+            {
+                e.Handled = true;
             }
         }
     }

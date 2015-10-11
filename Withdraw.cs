@@ -36,7 +36,7 @@ namespace ApteanEdgeBank
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            loadTable();
+            dataAccess.loadTable();
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -47,7 +47,7 @@ namespace ApteanEdgeBank
             }
         }
 
-        private void loadTable()
+      /*  private void loadTable()
         {
             dataTable = dataAccess.GetData(@"use ApteanEdgeBank select Customer.FirstName,CustomerAccount.CustomerID,Account.AccountID,Account.AccountType,AccountBalance,Account.DateOfOpening,DateOfClosing
  from Account inner join CustomerAccount
@@ -57,7 +57,7 @@ inner join Customer
 on
 Customer.CustomerID = CustomerAccount.CustomerID
 where Account.DateOfClosing is null", UserDAO.connectionString);
-        }
+        }*/
 
         public string GetAccountType(int accId)
         {
@@ -112,7 +112,7 @@ where Account.DateOfClosing is null", UserDAO.connectionString);
 
         private void Withdraw_Load(object sender, EventArgs e)
         {
-            loadTable();
+            dataAccess.loadTable();
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
