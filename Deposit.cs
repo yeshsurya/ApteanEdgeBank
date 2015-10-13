@@ -52,7 +52,7 @@ namespace ApteanEdgeBank
 
         private void Deposit_Load(object sender, EventArgs e)
         {
-            dataAccess.loadTable();
+            dataTable=dataAccess.loadTable();
         }
 
         private void button1_Click(object sender, EventArgs e)

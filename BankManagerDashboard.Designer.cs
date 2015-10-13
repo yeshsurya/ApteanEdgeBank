@@ -55,13 +55,12 @@
             this.ledgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readAccountActivityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateAccountBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.addAccountActivityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bankGeneralAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showBankBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -247,8 +246,7 @@
             // 
             this.ledgerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.readAccountActivityToolStripMenuItem,
-            this.calculateAccountBalanceToolStripMenuItem,
-            this.addAccountActivityToolStripMenuItem});
+            this.calculateAccountBalanceToolStripMenuItem});
             this.ledgerToolStripMenuItem.Name = "ledgerToolStripMenuItem";
             this.ledgerToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.ledgerToolStripMenuItem.Text = "Ledger";
@@ -267,6 +265,21 @@
             this.calculateAccountBalanceToolStripMenuItem.Text = "Calculate Account Balance";
             this.calculateAccountBalanceToolStripMenuItem.Click += new System.EventHandler(this.calculateAccountBalanceToolStripMenuItem_Click);
             // 
+            // bankGeneralAccountToolStripMenuItem
+            // 
+            this.bankGeneralAccountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showBankBalanceToolStripMenuItem});
+            this.bankGeneralAccountToolStripMenuItem.Name = "bankGeneralAccountToolStripMenuItem";
+            this.bankGeneralAccountToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.bankGeneralAccountToolStripMenuItem.Text = "Bank General Account";
+            // 
+            // showBankBalanceToolStripMenuItem
+            // 
+            this.showBankBalanceToolStripMenuItem.Name = "showBankBalanceToolStripMenuItem";
+            this.showBankBalanceToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.showBankBalanceToolStripMenuItem.Text = "Show Bank Balance";
+            this.showBankBalanceToolStripMenuItem.Click += new System.EventHandler(this.showBankBalanceToolStripMenuItem_Click);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -284,13 +297,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Welcome To Aptean Edge Bank";
             // 
-            // addAccountActivityToolStripMenuItem
-            // 
-            this.addAccountActivityToolStripMenuItem.Name = "addAccountActivityToolStripMenuItem";
-            this.addAccountActivityToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.addAccountActivityToolStripMenuItem.Text = "Add Account Activity";
-            this.addAccountActivityToolStripMenuItem.Click += new System.EventHandler(this.addAccountActivityToolStripMenuItem_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -300,21 +306,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(858, 443);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // bankGeneralAccountToolStripMenuItem
-            // 
-            this.bankGeneralAccountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showBankBalanceToolStripMenuItem});
-            this.bankGeneralAccountToolStripMenuItem.Name = "bankGeneralAccountToolStripMenuItem";
-            this.bankGeneralAccountToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
-            this.bankGeneralAccountToolStripMenuItem.Text = "Bank General Account";
-            // 
-            // showBankBalanceToolStripMenuItem
-            // 
-            this.showBankBalanceToolStripMenuItem.Name = "showBankBalanceToolStripMenuItem";
-            this.showBankBalanceToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.showBankBalanceToolStripMenuItem.Text = "Show Bank Balance";
-            this.showBankBalanceToolStripMenuItem.Click += new System.EventHandler(this.showBankBalanceToolStripMenuItem_Click);
             // 
             // BankManagerDashboard
             // 
@@ -367,7 +358,6 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem addAccountActivityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bankGeneralAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showBankBalanceToolStripMenuItem;
     }

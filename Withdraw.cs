@@ -36,7 +36,7 @@ namespace ApteanEdgeBank
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            dataAccess.loadTable();
+            dataTable=dataAccess.loadTable();
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
@@ -112,7 +112,7 @@ where Account.DateOfClosing is null", UserDAO.connectionString);
 
         private void Withdraw_Load(object sender, EventArgs e)
         {
-            dataAccess.loadTable();
+            dataTable=dataAccess.loadTable();
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)

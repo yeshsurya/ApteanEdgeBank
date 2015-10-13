@@ -38,7 +38,11 @@ namespace ApteanEdgeBank
         public void AddAccountActivity(int accID, string transType, double amount, DateTime transDate)
         {
             UserDAO dao = new UserDAO();
-            string myQuery = "insert into AccountActivityLedger values(" + accID + "," + "'" + transDate + "'" + "," + "'" + transType + "'" + "," + amount + ")";
+            string queryFetch = "Select * from Account where AccountID=" + accID;
+            DataTable dt = new DataTable();
+            dt = dao.GetData(queryFetch, UserDAO.connectionString);
+            double closingBalance=Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
+            string myQuery = "insert into AccountActivityLedger values(" + accID + "," + "'" + transDate + "'" + "," + "'" + transType + "'" + "," + amount + ","+closingBalance+")";
             string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
            // if (CheckAccountExistence(accID))
             //{
@@ -54,9 +58,11 @@ namespace ApteanEdgeBank
         {
             UserDAO dao = new UserDAO();
             string myQuery = "Select * from AccountActivityLedger where AccountID="+accId;
+            
             DataTable activityTable = new DataTable();
             string connectionstring = "Data Source=WS003LT1553PRD;Initial Catalog=ApteanEdgeBank;User=sa;Password=abc-123";
             activityTable = dao.GetData(myQuery, connectionstring);
+
             return activityTable;
         }
 
@@ -68,16 +74,18 @@ namespace ApteanEdgeBank
             string getCurrentBalance = "Select * from Account where AccountID=" + accId;
             double currentBalance=0.0;
             DataTable dt = new DataTable();
-            dt=dao.GetData(getCurrentBalance, connectionstring);
-            currentBalance = Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
-
+           
             /*double sum=currentBalance;
             DataTable activityLog = new DataTable();
 
             double accountBalance = 0.0;*/
             if (CheckAccountExistence(accId))
             {
-               /* //sumDeposits = currentBalance;
+                dt = dao.GetData(getCurrentBalance, connectionstring);
+               // dt.Columns.Add("Closing Balance", typeof(Double));
+                currentBalance = Convert.ToDouble(dt.Rows[0]["AccountBalance"]);
+               //dt.Rows[0]["Closing Balance"] = currentBalance;
+                /* //sumDeposits = currentBalance;
                 activityLog = dao.GetData(myQuery, connectionstring);
                 foreach (DataRow row in activityLog.Rows)
                 {
