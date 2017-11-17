@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ApteanEdgeBank
@@ -19,30 +12,46 @@ namespace ApteanEdgeBank
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.Add("Bank Manager");
-            comboBox1.Items.Add("Bank Employee");
-            textBox1.PasswordChar = '*';
-            textBox1.Text = "Aptean";
-            textBox2.Text = "Aptean";
-            comboBox1.Text = "Bank Manager";
+            textBox_password.PasswordChar = '*';
+            textBox_password.Text = @"Aptean";
+            textBox_login.Text = @"Aptean";
+        }
+
+        private bool DoValidation()
+        {
+            if (comboBox1.Text.Equals(""))
+            {
+                MessageBox.Show(@"Please select appropriate Designation", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (textBox_login.Text.Equals("") || textBox_password.Text.Equals(""))
+            {
+                MessageBox.Show(@"Please check your entered credentials",@"ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Aptean" && textBox2.Text == "Aptean" && comboBox1.SelectedIndex == 0 || comboBox1.Text=="Bank Manager")
+            if (DoValidation())
             {
-                BankManagerDashboard nextForm = new BankManagerDashboard();
-                this.Hide();
-                nextForm.ShowDialog();
-                this.Close();
+                if (textBox_password.Text == @"Aptean" && textBox_login.Text == @"Aptean" && comboBox1.SelectedIndex == 0 ||
+                    comboBox1.Text == @"Bank Manager")
+                {
+                    var nextForm = new BankManagerDashboard();
+                    Hide();
+                    nextForm.ShowDialog();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show(@"Authentication Failed. ", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
-            {
-                MessageBox.Show(" Authentication Failed");
-            }
-           // if (comboBox1.SelectedIndex == 0)
-                
-
         }
+
+        
+
     }
 }

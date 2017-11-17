@@ -47,12 +47,6 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="AccountActivityLedger.cs" />
-    <Compile Include="AddAccountActivity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddAccountActivity.Designer.cs">
-      <DependentUpon>AddAccountActivity.cs</DependentUpon>
-    </Compile>
     <Compile Include="BankAccountBalance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,9 +161,6 @@
     <Compile Include="Withdraw.Designer.cs">
       <DependentUpon>Withdraw.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddAccountActivity.resx">
-      <DependentUpon>AddAccountActivity.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BankAccountBalance.resx">
       <DependentUpon>BankAccountBalance.cs</DependentUpon>
     </EmbeddedResource>

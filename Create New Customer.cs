@@ -1,79 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ApteanEdgeBank
 {
-    public partial class Create_New_Customer : Form
+    public partial class CreateNewCustomer : Form
     {
+        private readonly Customer _customer = new Customer();
+        private bool _validFlag;
+        private int _count;
 
-        Customer nw = new Customer();
-        bool validFlag = false;
-        int count = 0;
-        public Create_New_Customer()
+        public CreateNewCustomer()
         {
             InitializeComponent();
         }
 
+        private bool DoValidation()
+        {
+            if (TextBoxFirstName.Text.Equals(string.Empty) || TextBoxBirthDate.Text.Equals(string.Empty) ||
+                TextBoxLastName.Text.Equals(string.Empty) || TextBoxContactNumber.Text.Equals(string.Empty))
+            {
+                MessageBox.Show(@"Please fill all the fields", @"ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+
         private void addTupleButton_Click(object sender, EventArgs e)
         {
+            var years = DateTime.Now.Year - DateTime.Parse(TextBoxBirthDate.Text).Year;
+            if (checkBox1.Checked)
+                years = 18;
+
             try
             {
-                
-                        if(firstNameBox.Text.Count()<2 || lastNameBox.Text.Count()<2)
-                            throw(new Exception());
-
-                        int years = DateTime.Now.Year - DateTime.Parse(dateOfBirthBox.Text.ToString()).Year;
-                        if (checkBox1.Checked == true)
-                            years = 18;
-                      //  MessageBox.Show(years.ToString());
-                        if (years < 18)
-                            MessageBox.Show("The age should be atleast 18 years ");
-                        else
-                            validFlag = true;
+                if (DoValidation())
+                {
+                    if (years < 18)
+                        MessageBox.Show(@"The age should be atleast 18 years ");
+                    else
+                        _validFlag = true;
 
 
-                        string FirstName = firstNameBox.Text;
-                        string LastName = lastNameBox.Text;
-                        //string MiddleName = middleNameBox.Text;
-                        string DateOfBirth = dateOfBirthBox.Text;
-                        string ContactNumber = contactNumberBox.Text;
-                        if (!nw.DoCustomerExists(FirstName, LastName, DateOfBirth))
+                    var firstName = TextBoxFirstName.Text;
+                    var lastName = TextBoxLastName.Text;
+                    var dateOfBirth = TextBoxBirthDate.Text;
+                    var contactNumber = TextBoxContactNumber.Text;
+
+                    if (!_customer.DoCustomerExists(firstName, lastName, dateOfBirth))
+                        if (_validFlag)
                         {
-                            if (validFlag)
-                            {
-                                nw.AddNewCutomer(FirstName, LastName, DateTime.Parse(DateOfBirth));
-                                nw.AddContactNumber(ContactNumber);
-                            }
-                            else
-                            { MessageBox.Show("Invalid Customer Entry : Please check the entered data fields"); }
+                            _customer.AddNewCutomer(firstName, lastName, DateTime.Parse(dateOfBirth));
+                            _customer.AddContactNumber(contactNumber);
                         }
                         else
                         {
-                            MessageBox.Show("Customer Already Exists");
+                            MessageBox.Show(@"Invalid Customer Entry : Please check the entered data fields");
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message + ":Fields can't be null");
-                    }
-            
-            
-            
+                    else
+                        MessageBox.Show(@"Customer Already Exists");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($@"Something went wrong. Problem - {ex.Message} ", @"ERROR", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            dateOfBirthBox.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
-            
-           // MessageBox.Show(dateOfBirthBox.Text);
-        }
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e) => TextBoxBirthDate.Text = monthCalendar1.SelectionRange.Start.ToShortDateString();
+        
 
         private void Create_New_Customer_Load(object sender, EventArgs e)
         {
@@ -81,68 +78,54 @@ namespace ApteanEdgeBank
             button1.Hide();
         }
 
-        private void dateOfBirthBox_TextChanged(object sender, EventArgs e)
-        {
+        private void dateOfBirthBox_TextChanged(object sender, EventArgs e) => monthCalendar1.Show();
+        
+        private void dateOfBirthBox_Click(object sender, EventArgs e) => monthCalendar1.Show();
+       
 
-            monthCalendar1.Show();
-        }
-
-        private void dateOfBirthBox_Click(object sender, EventArgs e)
+        //never used
+       /* private void middleNameBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            monthCalendar1.Show();
-        }
-
-        private void middleNameBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (firstNameBox.Text.Count() > 20)
-            { MessageBox.Show("Length of FirstName can't be greater than 20");
-            firstNameBox.Clear();
-            }
-            if (firstNameBox.Text.Count() == 0)
+            if (TextBoxFirstName.Text.Count() > 20)
             {
-                MessageBox.Show("Please Enter FirstName");
+                MessageBox.Show(@"Length of FirstName can't be greater than 20");
+                TextBoxFirstName.Clear();
             }
-
         }
+        */
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string secondNumber;
-            if (count == 0)
+            if (_count == 0)
             {
-                if (contactNumberBox.Text.Count() > 0)
+                if (TextBoxContactNumber.Text.Count() > 0)
                 {
                     MessageBox.Show("Please enter the number in box and press this button");
-                    contactNumberBox.Clear();
-                    count++;
+                    TextBoxContactNumber.Clear();
+                    _count++;
                 }
             }
             else
             {
-                secondNumber = contactNumberBox.Text;
-                nw.AddContactNumber2(secondNumber);
-                MessageBox.Show("Contact Added successfully");
+                var secondNumber = TextBoxContactNumber.Text;
+                _customer.AddContactNumber2(secondNumber);
+                MessageBox.Show(@"Contact Added successfully");
             }
         }
 
         private void contactNumberBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != (char)Keys.Back && e.KeyChar  !=  (char)Keys.Delete && !char.IsDigit(e.KeyChar))
-            {
+            if (e.KeyChar != (char) Keys.Back && e.KeyChar != (char) Keys.Delete && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
-            }
-            
-
         }
 
         private void contactNumberBox_TextChanged(object sender, EventArgs e)
         {
-            if (contactNumberBox.Text.Length > 10)
+            if (TextBoxContactNumber.Text.Length > 10)
             {
-                contactNumberBox.Clear();
-                MessageBox.Show("Please Enter valid 10 digit number");
+                TextBoxContactNumber.Clear();
+                MessageBox.Show(@"Please Enter valid 10 digit mobile number",@"ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-
         }
 
         private void dateOfBirthBox_TabIndexChanged(object sender, EventArgs e)
@@ -150,19 +133,10 @@ namespace ApteanEdgeBank
             monthCalendar1.Show();
         }
 
-        private void dateOfBirthBox_CursorChanged(object sender, EventArgs e)
-        {
-            monthCalendar1.Show();
-        }
+        private void dateOfBirthBox_CursorChanged(object sender, EventArgs e) => monthCalendar1.Show();
 
-        private void dateOfBirthBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            monthCalendar1.Show();
-        }
+        private void dateOfBirthBox_KeyPress(object sender, KeyPressEventArgs e) => monthCalendar1.Show();
 
-        private void dateOfBirthBox_Enter(object sender, EventArgs e)
-        {
-            monthCalendar1.Show();
-        }
+        private void dateOfBirthBox_Enter(object sender, EventArgs e) => monthCalendar1.Show();
     }
 }
