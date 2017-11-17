@@ -1,6 +1,6 @@
 ﻿namespace ApteanEdgeBank
 {
-    partial class Create_New_Customer
+    partial class CreateNewCustomer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.firstNameBox = new System.Windows.Forms.TextBox();
-            this.lastNameBox = new System.Windows.Forms.TextBox();
+            this.TextBoxFirstName = new System.Windows.Forms.TextBox();
+            this.TextBoxLastName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.addTupleButton = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.dateOfBirthBox = new System.Windows.Forms.TextBox();
+            this.TextBoxBirthDate = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.contactNumberBox = new System.Windows.Forms.TextBox();
+            this.TextBoxContactNumber = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // firstNameBox
+            // TextBoxFirstName
             // 
-            this.firstNameBox.Location = new System.Drawing.Point(202, 38);
-            this.firstNameBox.Name = "firstNameBox";
-            this.firstNameBox.Size = new System.Drawing.Size(227, 20);
-            this.firstNameBox.TabIndex = 0;
+            this.TextBoxFirstName.Location = new System.Drawing.Point(202, 38);
+            this.TextBoxFirstName.Name = "TextBoxFirstName";
+            this.TextBoxFirstName.Size = new System.Drawing.Size(227, 20);
+            this.TextBoxFirstName.TabIndex = 0;
             // 
-            // lastNameBox
+            // TextBoxLastName
             // 
-            this.lastNameBox.Location = new System.Drawing.Point(202, 134);
-            this.lastNameBox.Name = "lastNameBox";
-            this.lastNameBox.Size = new System.Drawing.Size(227, 20);
-            this.lastNameBox.TabIndex = 2;
+            this.TextBoxLastName.Location = new System.Drawing.Point(202, 134);
+            this.TextBoxLastName.Name = "TextBoxLastName";
+            this.TextBoxLastName.Size = new System.Drawing.Size(227, 20);
+            this.TextBoxLastName.TabIndex = 2;
             // 
             // label1
             // 
@@ -103,18 +103,18 @@
             this.monthCalendar1.TabIndex = 7;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
-            // dateOfBirthBox
+            // TextBoxBirthDate
             // 
-            this.dateOfBirthBox.Location = new System.Drawing.Point(202, 294);
-            this.dateOfBirthBox.Name = "dateOfBirthBox";
-            this.dateOfBirthBox.Size = new System.Drawing.Size(227, 20);
-            this.dateOfBirthBox.TabIndex = 5;
-            this.dateOfBirthBox.Click += new System.EventHandler(this.dateOfBirthBox_Click);
-            this.dateOfBirthBox.CursorChanged += new System.EventHandler(this.dateOfBirthBox_CursorChanged);
-            this.dateOfBirthBox.TabIndexChanged += new System.EventHandler(this.dateOfBirthBox_TabIndexChanged);
-            this.dateOfBirthBox.TextChanged += new System.EventHandler(this.dateOfBirthBox_TextChanged);
-            this.dateOfBirthBox.Enter += new System.EventHandler(this.dateOfBirthBox_Enter);
-            this.dateOfBirthBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateOfBirthBox_KeyPress);
+            this.TextBoxBirthDate.Location = new System.Drawing.Point(202, 294);
+            this.TextBoxBirthDate.Name = "TextBoxBirthDate";
+            this.TextBoxBirthDate.Size = new System.Drawing.Size(227, 20);
+            this.TextBoxBirthDate.TabIndex = 5;
+            this.TextBoxBirthDate.Click += new System.EventHandler(this.dateOfBirthBox_Click);
+            this.TextBoxBirthDate.CursorChanged += new System.EventHandler(this.dateOfBirthBox_CursorChanged);
+            this.TextBoxBirthDate.TabIndexChanged += new System.EventHandler(this.dateOfBirthBox_TabIndexChanged);
+            this.TextBoxBirthDate.TextChanged += new System.EventHandler(this.dateOfBirthBox_TextChanged);
+            this.TextBoxBirthDate.Enter += new System.EventHandler(this.dateOfBirthBox_Enter);
+            this.TextBoxBirthDate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dateOfBirthBox_KeyPress);
             // 
             // checkBox1
             // 
@@ -126,14 +126,14 @@
             this.checkBox1.Text = "Minor";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // contactNumberBox
+            // TextBoxContactNumber
             // 
-            this.contactNumberBox.Location = new System.Drawing.Point(202, 214);
-            this.contactNumberBox.Name = "contactNumberBox";
-            this.contactNumberBox.Size = new System.Drawing.Size(227, 20);
-            this.contactNumberBox.TabIndex = 3;
-            this.contactNumberBox.TextChanged += new System.EventHandler(this.contactNumberBox_TextChanged);
-            this.contactNumberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.contactNumberBox_KeyPress);
+            this.TextBoxContactNumber.Location = new System.Drawing.Point(202, 214);
+            this.TextBoxContactNumber.Name = "TextBoxContactNumber";
+            this.TextBoxContactNumber.Size = new System.Drawing.Size(227, 20);
+            this.TextBoxContactNumber.TabIndex = 3;
+            this.TextBoxContactNumber.TextChanged += new System.EventHandler(this.contactNumberBox_TextChanged);
+            this.TextBoxContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.contactNumberBox_KeyPress);
             // 
             // label5
             // 
@@ -155,24 +155,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Create_New_Customer
+            // CreateNewCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 549);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.contactNumberBox);
+            this.Controls.Add(this.TextBoxContactNumber);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.dateOfBirthBox);
+            this.Controls.Add(this.TextBoxBirthDate);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.addTupleButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lastNameBox);
-            this.Controls.Add(this.firstNameBox);
-            this.Name = "Create_New_Customer";
+            this.Controls.Add(this.TextBoxLastName);
+            this.Controls.Add(this.TextBoxFirstName);
+            this.Name = "CreateNewCustomer";
             this.Text = "Create_New_Customer";
             this.Load += new System.EventHandler(this.Create_New_Customer_Load);
             this.ResumeLayout(false);
@@ -182,16 +182,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox firstNameBox;
-        private System.Windows.Forms.TextBox lastNameBox;
+        private System.Windows.Forms.TextBox TextBoxFirstName;
+        private System.Windows.Forms.TextBox TextBoxLastName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button addTupleButton;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.TextBox dateOfBirthBox;
+        private System.Windows.Forms.TextBox TextBoxBirthDate;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox contactNumberBox;
+        private System.Windows.Forms.TextBox TextBoxContactNumber;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
     }
